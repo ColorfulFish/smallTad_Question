@@ -5,7 +5,7 @@ import java.util.Base64;
 
 /*
  * @Author xu.chenyang
- * @Email chenyang.xu@linkkids.cn
+ * @Email xu.chenyang@gmail.com
  * @Description
  * @Date 18:08 2020/3/13
  **/
