@@ -1,0 +1,36 @@
+server:
+  port: 8070
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/villagequestion?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false&amp;allowMultiQueries=true
+      username: root
+      password: root
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  application:
+    name:smallTadpole
+swagger: ##给swagger设置一个开关
+  ebable: false
+wx:
+  miniapp:
+    configs:
+        - appid: #微信小程序的appid
+          secret: #微信小程序的Secret
+          token: #微信小程序消息服务器配置的token
+          aesKey: #微信小程序消息服务器配置的EncodingAESKey
+          msgDataFormat: JSON

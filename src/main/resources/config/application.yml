@@ -1,0 +1,14 @@
+#公共配置与profiles选择无关
+mybatis:
+  type-aliases-package: com.small.tadpole.domain
+  mapper-locations: classpath:com/small/tadpole/mapper/*.xml
+#开发配置
+spring:
+  profiles:
+    active: dev
+##分页配置信息
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
