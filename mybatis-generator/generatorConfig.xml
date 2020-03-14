@@ -80,5 +80,7 @@
         </table>
         <table tableName="user">
         </table>
+        <table tableName="question_deal_log">
+        </table>
     </context>
 </generatorConfiguration>
