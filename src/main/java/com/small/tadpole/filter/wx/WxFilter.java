@@ -21,7 +21,7 @@ import java.io.IOException;
  * @Description
  * @Date 13:56 2020/3/12
  **/
-@WebFilter(filterName="wxFilter",urlPatterns = {"/wx--/*"})
+@WebFilter(filterName="wxFilter",urlPatterns = {"/wx/*"})
 public class WxFilter implements Filter {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -48,6 +48,11 @@ public class WxFilter implements Filter {
                 User user = new User();
                 user.setOpenid(code);
                 user.setSessionid(session.getSessionKey());
+                /**
+                 User user = new User();
+                 user.setOpenid("JIDE1235848548UJJ");
+                 user.setSessionid("JIDE1235848548UJJ");
+                 **/
                 //如果登陆过就更新session
                 if(wxUserOption.isLogin(user)){
                     wxUserOption.updateWxSession(user);
@@ -57,7 +62,7 @@ public class WxFilter implements Filter {
                 }
                 filterChain.doFilter(servletRequest,servletResponse);
             } catch (WxErrorException e) {
-                servletRequest.getRequestDispatcher("/public/error_500.html").forward(servletRequest,servletResponse);
+                logger.error(e.getMessage());
             }
         }else {
             servletRequest.getRequestDispatcher("/public/error_404.html").forward(servletRequest,servletResponse);

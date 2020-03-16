@@ -26,10 +26,10 @@ public class WxPicOption {
 
     @ApiOperation(value="上传文件",notes="开始页数,页数大小", httpMethod = "GET")
     @GetMapping("/list")
-    public String upload(@ApiParam(value = "文件",required = true)
+    public boolean upload(@ApiParam(value = "文件",required = true)
                              @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            return "false";
+            return false;
         }
         String fileName = file.getOriginalFilename();
         int size = (int) file.getSize();
@@ -41,13 +41,13 @@ public class WxPicOption {
         }
         try {
             file.transferTo(dest); //保存文件
-            return "true";
+            return true;
         } catch (IllegalStateException e) {
             e.printStackTrace();
-            return "false";
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
-            return "false";
+            return false;
         }
     }
 }

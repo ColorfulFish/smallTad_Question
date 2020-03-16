@@ -56,6 +56,6 @@ public class WxUserOptionImpl implements UserOption,WxUserOption {
     public int updateWxSession(User user) {
         UserExample userExample = new UserExample();
         userExample.newAndCreateCriteria().andOpenidEqualTo(user.getOpenid());
-        return userMapper.updateByExample(user,userExample);
+        return userMapper.updateByExampleSelective(user,userExample);
     }
 }
