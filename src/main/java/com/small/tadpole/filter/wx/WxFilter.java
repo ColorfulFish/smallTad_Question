@@ -21,7 +21,7 @@ import java.io.IOException;
  * @Description
  * @Date 13:56 2020/3/12
  **/
-@WebFilter(filterName="wxFilter",urlPatterns = {"/wx/*"})
+@WebFilter(filterName="wxFilter",urlPatterns = {"/wx--/*"})
 public class WxFilter implements Filter {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired

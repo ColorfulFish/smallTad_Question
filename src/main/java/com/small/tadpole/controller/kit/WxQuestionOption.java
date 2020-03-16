@@ -11,14 +11,15 @@ import com.github.pagehelper.PageInfo;
 import com.small.tadpole.domain.Question;
 import com.small.tadpole.domain.QuestionExample;
 
+import com.small.tadpole.domain.pack.QuestionPackage;
 import com.small.tadpole.service.question.QuestionOptionImpl;
+import com.small.tadpole.service.questionPack.QuestionPackOptionImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,9 @@ import java.util.List;
 public class WxQuestionOption {
     @Autowired
     private QuestionOptionImpl questionOption;
+
+    @Autowired
+    private QuestionPackOptionImpl questionPackOption;
     @ApiOperation(value="查询所有问题",notes="开始页数,页数大小", httpMethod = "GET")
     @GetMapping("/list")
     public PageInfo<Question> list(@ApiParam(value = "page 开始页数",required = true)int page,
@@ -39,12 +43,18 @@ public class WxQuestionOption {
         return questionPageInfo;
     }
 
+
+    @ApiOperation(value="查询明细",notes="", httpMethod = "GET")
+    @GetMapping("/detail")
+    public QuestionPackage detail(@RequestBody Question question){
+        return questionPackOption.getQuestionPackage(question);
+    }
+
+
     @ApiOperation(value="创建问题",notes="", httpMethod = "POST")
     @PostMapping("/add")
-    public int add(@RequestBody Question question){
-        question.setCreateTime(LocalDateTime.now());
-        questionOption.addQuestion(question);
-        return question.getId();
+    public int add(@RequestBody QuestionPackage question){
+        return questionPackOption.addQuestionPackage(question);
     }
 
 }
