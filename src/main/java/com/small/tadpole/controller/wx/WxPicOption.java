@@ -1,4 +1,4 @@
-package com.small.tadpole.controller.kit;
+package com.small.tadpole.controller.wx;
 /*
  * @Author xu.chenyang
  * @Email xu.chenyang24@gmail.cn

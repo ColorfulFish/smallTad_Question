@@ -58,4 +58,17 @@ public class WxUserOptionImpl implements UserOption,WxUserOption {
         userExample.newAndCreateCriteria().andOpenidEqualTo(user.getOpenid());
         return userMapper.updateByExampleSelective(user,userExample);
     }
+
+    /**
+     * 获取一个用户
+     *
+     * @param code
+     * @return
+     */
+    @Override
+    public User getOneUser(String code) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andOpenidEqualTo(code);
+        return userMapper.selectOneByExample(userExample);
+    }
 }
