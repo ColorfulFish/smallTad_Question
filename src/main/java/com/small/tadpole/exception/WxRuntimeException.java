@@ -26,6 +26,7 @@ public class WxRuntimeException extends AppRuntimeException {
     public WxRuntimeException() {
     }
 
+
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -36,6 +37,11 @@ public class WxRuntimeException extends AppRuntimeException {
      */
     public WxRuntimeException(String message) {
         super(message);
+    }
+
+    public WxRuntimeException(Integer status,String message) {
+        super(message);
+        this.status = status;
     }
 
     /**
