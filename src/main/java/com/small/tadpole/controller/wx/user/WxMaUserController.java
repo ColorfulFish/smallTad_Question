@@ -6,19 +6,19 @@ import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.small.tadpole.config.WxMaConfiguration;
 import com.small.tadpole.domain.User;
+import com.small.tadpole.exception.WxRuntimeException;
 import com.small.tadpole.service.user.wx.WxUserOptionImpl;
 import com.small.tadpole.utils.JsonUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import me.chanjar.weixin.common.error.WxErrorException;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 /*
  * @Author xu.chenyang
@@ -36,19 +36,29 @@ public class WxMaUserController {
     /**
      * 登陆接口
      */
-    @ApiOperation(value="登陆",notes="开始页数,页数大小", httpMethod = "GET")
-    @GetMapping("/login")
-    public User login(@PathVariable String appid, String code) throws WxErrorException {
+    @ApiOperation(value="登陆", httpMethod = "POST")
+    @PostMapping("/login/{appid}/{code}")
+    public User login(@PathVariable String appid,
+                      @PathVariable String code){
+        throw new WxRuntimeException(100);
+        /**
         User user = null;
-        if (StringUtils.isBlank(code)) {
-            return null;
-        }
         final WxMaService wxService = WxMaConfiguration.getMaService(appid);
         WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
+        if (StringUtils.isBlank(code)) {
+            return null;
+        }else {
+            throw new WxRuntimeException("100");
+        }
+         **/
+        /**
         if (null != session && null != session.getSessionKey()) {
             user = wxUserOption.getOneUser(code);
+        }else {
+            throw new WxRuntimeException("100");
         }
-        return user;
+         **/
+        //return null;
     }
 
     /**

@@ -21,14 +21,28 @@ public class WxExceptionProperties {
         /**
          * 错误编码
          */
-        private String code;
+        private Integer status;
 
         /**
          * 错误信息描述
          */
         private String mesg;
 
+        public Integer getStatus() {
+            return status;
+        }
 
+        public void setStatus(Integer status) {
+            this.status = status;
+        }
+
+        public String getMesg() {
+            return mesg;
+        }
+
+        public void setMesg(String mesg) {
+            this.mesg = mesg;
+        }
     }
 
     public List<MesgException> getExceptionList() {

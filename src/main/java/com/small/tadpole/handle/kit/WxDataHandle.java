@@ -1,4 +1,4 @@
-package com.small.tadpole.handle;
+package com.small.tadpole.handle.kit;
 
 import com.small.tadpole.domain.result.Result;
 import org.springframework.core.MethodParameter;

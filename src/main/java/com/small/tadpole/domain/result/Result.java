@@ -13,30 +13,33 @@ import io.swagger.annotations.ApiModelProperty;
 public class Result<T> {
     /** 错误码. */
     @ApiModelProperty(value="错误码 0 表示成功,其他为错误编码")
-    private Integer code = 0;
+    private Integer status = 0;
+
+    @ApiModelProperty(value="时间戳")
+    private long timestamp = System.currentTimeMillis();
 
     /** 提示信息. */
     @ApiModelProperty(value="提示信息")
-    private String msg;
+    private String message;
 
     /** 具体的内容. */
     @ApiModelProperty(value="具体的内容")
     private T data;
 
-    public Integer getCode() {
-        return code;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {
@@ -45,5 +48,13 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
