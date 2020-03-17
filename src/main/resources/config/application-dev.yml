@@ -45,7 +45,13 @@ wx:
           mesg: 微信调用失败
         - status: 102
           mesg: 登陆的appid和code不能为空 /login/{appid}/{code}
+        - status: 200
+          mesg: 上传的文件为空
+        - status: 201
+          mesg: 文件异常
+        - status: 202
+          mesg: IO异常
 
 pic:
   upload:
-    path: D:\tmp
+    path: D:/tmp/

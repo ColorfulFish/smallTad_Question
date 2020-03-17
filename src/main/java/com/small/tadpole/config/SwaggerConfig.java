@@ -31,7 +31,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).
-                enable(ebable).select().apis(RequestHandlerSelectors.basePackage("com.small.tadpole.controller.kit")). //扫描包
+                enable(ebable).select().apis(RequestHandlerSelectors.basePackage("com.small.tadpole.controller.wx")). //扫描包
                 paths(PathSelectors.any()).build();
         //可以设置为扫描多个包
         /**

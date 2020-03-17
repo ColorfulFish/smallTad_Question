@@ -6,6 +6,8 @@ package com.small.tadpole.controller.wx;
  * @Date 9:03 2019/9/27
  **/
 
+import com.small.tadpole.domain.pic.PicInfo;
+import com.small.tadpole.exception.WxRuntimeException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,30 +26,31 @@ public class WxPicOption {
     @Value("${pic.upload.path}")
     private String uploadPicPath;
 
-    @ApiOperation(value="上传文件",notes="开始页数,页数大小", httpMethod = "GET")
-    @GetMapping("/list")
-    public boolean upload(@ApiParam(value = "文件",required = true)
-                             @RequestParam("file") MultipartFile file) {
+    @ApiOperation(value="上传文件",notes="开始页数,页数大小", httpMethod = "POST")
+    @PostMapping("/upload")
+    public PicInfo upload(@ApiParam(value = "文件", required = true)
+                          @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            return false;
+            throw new WxRuntimeException(200);
         }
         String fileName = file.getOriginalFilename();
+        String fileType = file.getOriginalFilename().split("\\.")[1];
+        String fileNameOld = uploadPicPath + File.separator + fileName;
+        String fileNameNew = uploadPicPath + File.separator + "wx" + System.currentTimeMillis() + "." + fileType;
         int size = (int) file.getSize();
-        System.out.println(fileName + "-->" + size);
-
-        File dest = new File(uploadPicPath);
+        File dest = new File(fileNameOld);
+        File destNew = new File(fileNameNew);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdir();
         }
         try {
             file.transferTo(dest); //保存文件
-            return true;
+            dest.renameTo(destNew);
+            return new PicInfo(destNew.getName(), size);
         } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return false;
+            throw new WxRuntimeException(201);
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            throw new WxRuntimeException(202);
         }
     }
 }
