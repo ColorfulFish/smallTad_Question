@@ -40,7 +40,11 @@ wx:
     exception:
       exceptionList:
         - status: 100
-          mesg: 登陆异常
+          mesg: 微信登陆失败
+        - status: 101
+          mesg: 微信调用失败
+        - status: 102
+          mesg: 登陆的appid和code不能为空 /login/{appid}/{code}
 
 pic:
   upload:
