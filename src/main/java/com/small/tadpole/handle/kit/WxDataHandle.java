@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @Description
  * @Date 16:17 2020/3/16
  **/
-@ControllerAdvice(basePackages = {"com.small.tadpole.controller.kit"})
+@ControllerAdvice(basePackages = {"com.small.tadpole.controller.wx"})
 public class WxDataHandle implements ResponseBodyAdvice {
 
     @Override
