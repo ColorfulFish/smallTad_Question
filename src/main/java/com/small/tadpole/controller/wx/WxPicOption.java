@@ -26,7 +26,7 @@ public class WxPicOption {
     @Value("${pic.upload.path}")
     private String uploadPicPath;
 
-    @ApiOperation(value="上传文件",notes="开始页数,页数大小", httpMethod = "POST")
+    @ApiOperation(value="上传文件", httpMethod = "POST")
     @PostMapping("/upload")
     public PicInfo upload(@ApiParam(value = "文件", required = true)
                           @RequestParam("file") MultipartFile file) {

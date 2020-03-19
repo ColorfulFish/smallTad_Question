@@ -36,9 +36,9 @@ public class WxMaUserController {
      * 登陆接口
      */
     @ApiOperation(value="登陆", httpMethod = "POST")
-    @PostMapping("/login/{appid}/{code}")
-    public User login(@ApiParam(value = "appid 用户登陆的appid",required = true) @PathVariable String appid,
-                      @ApiParam(value = "code 用户登陆的code",required = true)@PathVariable String code){
+    @PostMapping("/login/")
+    public User login(@ApiParam(value = "appid 用户登陆的appid",required = true) @RequestParam("appid") String appid,
+                      @ApiParam(value = "code 用户登陆的code",required = true)@RequestParam("code") String code){
         User user = null;
         final WxMaService wxService = WxMaConfiguration.getMaService(appid);
         WxMaJscode2SessionResult session = null;
